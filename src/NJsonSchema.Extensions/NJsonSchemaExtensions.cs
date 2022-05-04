@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
-using NJsonSchema;
-#if NETSTANDARD1_3
 using System.Reflection;
+using Newtonsoft.Json.Linq;
+#if NETSTANDARD1_3
 #endif
 
-namespace NSwagSchema.Extensions;
+namespace NJsonSchema.Extensions;
 
-public static class NSwagSchemaExtensions
+public static class NJsonSchemaExtensions
 {
     private static readonly JsonSchemaProperty Boolean = new() { Type = JsonObjectType.Boolean };
     private static readonly JsonSchemaProperty Byte = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Byte };

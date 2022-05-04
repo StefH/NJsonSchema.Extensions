@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12F3A075-5B47-4723-89B6-D623A8F2979A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSwagSchema.Extensions", "src\NSwagSchema.Extensions\NSwagSchema.Extensions.csproj", "{98E65B90-030A-4EFC-B20C-8AB2CC1F5497}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B630E4C5-172B-4E08-9BC8-8AB7DEE4CF14}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJsonSchema.Extensions.Tests", "test\NJsonSchema.Extensions.Tests\NJsonSchema.Extensions.Tests.csproj", "{23C292BE-5B6D-403A-ABBE-2B019C0CC958}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NJsonSchema.Extensions", "src\NJsonSchema.Extensions\NJsonSchema.Extensions.csproj", "{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,21 +17,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{98E65B90-030A-4EFC-B20C-8AB2CC1F5497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98E65B90-030A-4EFC-B20C-8AB2CC1F5497}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98E65B90-030A-4EFC-B20C-8AB2CC1F5497}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98E65B90-030A-4EFC-B20C-8AB2CC1F5497}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23C292BE-5B6D-403A-ABBE-2B019C0CC958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23C292BE-5B6D-403A-ABBE-2B019C0CC958}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23C292BE-5B6D-403A-ABBE-2B019C0CC958}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23C292BE-5B6D-403A-ABBE-2B019C0CC958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{98E65B90-030A-4EFC-B20C-8AB2CC1F5497} = {12F3A075-5B47-4723-89B6-D623A8F2979A}
 		{23C292BE-5B6D-403A-ABBE-2B019C0CC958} = {B630E4C5-172B-4E08-9BC8-8AB7DEE4CF14}
+		{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4} = {12F3A075-5B47-4723-89B6-D623A8F2979A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB87944C-C1E5-4ED7-A230-E5ABC6834115}

@@ -3,6 +3,9 @@
     <PropertyGroup>
         <Version>0.0.0.1-preview-01</Version>
         <Authors>Stef Heyenrath</Authors>
+        <Description>Extension methods for NJsonSchema to convert JObject, JArray and object to a NJsonSchema</Description>
+        <PackageTags>json schema validation generator .net extensions</PackageTags>
+        <Copyright>Copyright © Stef Heyenrath, 2022</Copyright>
         <PackageProjectUrl>https://github.com/StefH/NJsonSchema.Extensions</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryType>git</RepositoryType>
