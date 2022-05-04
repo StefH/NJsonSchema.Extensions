@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace NSwagSchema.Extensions;
 
-internal static class NSwagSchemaExtensions
+public static class NSwagSchemaExtensions
 {
     private static readonly JsonSchemaProperty Boolean = new() { Type = JsonObjectType.Boolean };
     private static readonly JsonSchemaProperty Byte = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Byte };
@@ -166,7 +166,7 @@ internal static class NSwagSchemaExtensions
                 var jsonSchemaPropertyForObject = new JsonSchemaProperty { Type = JsonObjectType.Object };
                 foreach (var propertyInfo in value.GetType().GetProperties())
                 {
-                    var propertyValue = propertyInfo.GetValue(value);
+                    var propertyValue = propertyInfo.GetValue(value, null);
                     var jsonSchemaProperty = value != null ? ConvertValue(propertyValue) : ConvertType(propertyInfo.PropertyType);
                     jsonSchemaPropertyForObject.Properties.Add(propertyInfo.Name, jsonSchemaProperty);
                 }
