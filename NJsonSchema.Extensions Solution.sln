@@ -7,9 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12F3A075-5B4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B630E4C5-172B-4E08-9BC8-8AB7DEE4CF14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJsonSchema.Extensions.Tests", "test\NJsonSchema.Extensions.Tests\NJsonSchema.Extensions.Tests.csproj", "{23C292BE-5B6D-403A-ABBE-2B019C0CC958}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NJsonSchema.Extensions.Tests", "test\NJsonSchema.Extensions.Tests\NJsonSchema.Extensions.Tests.csproj", "{23C292BE-5B6D-403A-ABBE-2B019C0CC958}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NJsonSchema.Extensions", "src\NJsonSchema.Extensions\NJsonSchema.Extensions.csproj", "{503EA4F7-0E68-4B82-9EF7-FCAD3381D6E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8AB197A9-B5BB-49DB-9536-2B045C554C84}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
