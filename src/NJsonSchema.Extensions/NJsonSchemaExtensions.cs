@@ -49,7 +49,7 @@ public static class NJsonSchemaExtensions
                 return new JsonSchemaProperty
                 {
                     Type = JsonObjectType.Array,
-                    Items = { arrayItem }
+                    Item = arrayItem
                 };
 
             case JTokenType.Boolean:
@@ -105,7 +105,7 @@ public static class NJsonSchemaExtensions
                 return new JsonSchemaProperty
                 {
                     Type = JsonObjectType.Array,
-                    Items = { ConvertType(array.GetType().GetElementType()!) }
+                    Item = ConvertType(array.GetType().GetElementType()!)
                 };
 
             case IList list:
