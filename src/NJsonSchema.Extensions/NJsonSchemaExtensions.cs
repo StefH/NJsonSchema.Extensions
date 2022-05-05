@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 #if NETSTANDARD1_3
 #endif
@@ -10,45 +11,71 @@ namespace NJsonSchema.Extensions;
 
 public static class NJsonSchemaExtensions
 {
-    private static readonly JsonSchemaProperty Boolean = new() { Type = JsonObjectType.Boolean };
-    private static readonly JsonSchemaProperty Byte = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Byte };
-    private static readonly JsonSchemaProperty Date = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.DateTime };
-    private static readonly JsonSchemaProperty Float = new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Float };
-    private static readonly JsonSchemaProperty Double = new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Double };
-    private static readonly JsonSchemaProperty Email = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Email };
-    private static readonly JsonSchemaProperty Guid = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Guid };
-    private static readonly JsonSchemaProperty Integer = new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Integer };
-    private static readonly JsonSchemaProperty IpV4 = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV4 };
-    private static readonly JsonSchemaProperty IpV6 = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV6 };
-    private static readonly JsonSchemaProperty Long = new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Long };
-    private static readonly JsonSchemaProperty Null = new() { Type = JsonObjectType.Null };
-    private static readonly JsonSchemaProperty Object = new() { Type = JsonObjectType.Object };
-    private static readonly JsonSchemaProperty String = new() { Type = JsonObjectType.String };
-    private static readonly JsonSchemaProperty TimeSpan = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.TimeSpan };
-    private static readonly JsonSchemaProperty Uri = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Uri };
+    #region JsonSchemaProperties
+    private static JsonSchemaProperty Boolean => new() { Type = JsonObjectType.Boolean };
+    private static JsonSchemaProperty Byte => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Byte };
+    private static JsonSchemaProperty Date => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.DateTime };
+    private static JsonSchemaProperty Float => new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Float };
+    private static JsonSchemaProperty Double => new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Double };
+    private static JsonSchemaProperty Email => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Email };
+    private static JsonSchemaProperty Guid => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Guid };
+    private static JsonSchemaProperty Integer => new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Integer };
+    private static JsonSchemaProperty IpV4 => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV4 };
+    private static JsonSchemaProperty IpV6 => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV6 };
+    private static JsonSchemaProperty Long => new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Long };
+    private static JsonSchemaProperty Null => new() { Type = JsonObjectType.Null };
+    private static JsonSchemaProperty Object => new() { Type = JsonObjectType.Object };
+    private static JsonSchemaProperty String => new() { Type = JsonObjectType.String };
+    private static JsonSchemaProperty TimeSpan => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.TimeSpan };
+    private static JsonSchemaProperty Uri => new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Uri };
+    #endregion
 
-    public static JsonSchema ToJsonSchema(this JObject instance)
+    /// <summary>
+    /// Convert a <see cref="JObject"/> to a <see cref="JsonSchema"/>.
+    /// </summary>
+    /// <param name="instance">The <see cref="JObject"/> instance.</param>
+    /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
+    /// <returns>The converted <see cref="JsonSchema"/>.</returns>
+    [PublicAPI]
+    public static JsonSchema ToJsonSchema(this JObject instance, NJsonSchemaSettings? settings = null)
     {
-        return ConvertJToken(instance ?? throw new ArgumentNullException(nameof(instance)));
+        settings ??= new NJsonSchemaSettings();
+        return ConvertJToken(instance ?? throw new ArgumentNullException(nameof(instance)), settings);
     }
 
-    public static JsonSchema ToJsonSchema(this JArray instance)
+    /// <summary>
+    /// Convert a <see cref="JArray"/> to a <see cref="JsonSchema"/>.
+    /// </summary>
+    /// <param name="instance">The <see cref="JArray"/> instance.</param>
+    /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
+    /// <returns>The converted <see cref="JsonSchema"/>.</returns>
+    [PublicAPI]
+    public static JsonSchema ToJsonSchema(this JArray instance, NJsonSchemaSettings? settings = null)
     {
-        return ConvertJToken(instance ?? throw new ArgumentNullException(nameof(instance)));
+        settings ??= new NJsonSchemaSettings();
+        return ConvertJToken(instance ?? throw new ArgumentNullException(nameof(instance)), settings);
     }
 
-    public static JsonSchema ToJsonSchema(this object instance)
+    /// <summary>
+    /// Convert a <see cref="object"/> to a <see cref="JsonSchema"/>.
+    /// </summary>
+    /// <param name="instance">The <see cref="object"/> instance.</param>
+    /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
+    /// <returns>The converted <see cref="JsonSchema"/>.</returns>
+    [PublicAPI]
+    public static JsonSchema ToJsonSchema(this object instance, NJsonSchemaSettings? settings = null)
     {
-        return ConvertValue(instance ?? throw new ArgumentNullException(nameof(instance)));
+        settings ??= new NJsonSchemaSettings();
+        return ConvertValue(instance ?? throw new ArgumentNullException(nameof(instance)), settings);
     }
 
-    private static JsonSchemaProperty ConvertJToken(JToken value)
+    private static JsonSchemaProperty ConvertJToken(JToken value, NJsonSchemaSettings settings)
     {
         var type = value.Type;
         switch (type)
         {
             case JTokenType.Array:
-                var arrayItem = value.HasValues ? ConvertJToken(value.First!) : Object;
+                var arrayItem = value.HasValues ? ConvertJToken(value.First!, settings) : Object;
                 return new JsonSchemaProperty
                 {
                     Type = JsonObjectType.Array,
@@ -81,13 +108,13 @@ public static class NJsonSchemaExtensions
                 var jsonSchemaPropertyForObject = new JsonSchemaProperty { Type = JsonObjectType.Object };
                 foreach (var jProperty in ((JObject)value).Properties())
                 {
-                    jsonSchemaPropertyForObject.Properties.Add(jProperty.Name, ConvertJToken(jProperty.Value));
+                    jsonSchemaPropertyForObject.Properties.Add(jProperty.Name, ConvertJToken(jProperty.Value, settings));
                 }
 
                 return jsonSchemaPropertyForObject;
 
             case JTokenType.String:
-                return StringMapper.Map(value.Value<string>());
+                return settings.ResolveFormatForString ? StringMapper.Map(value.Value<string>()) : String;
 
             case JTokenType.TimeSpan:
                 return TimeSpan;
@@ -100,7 +127,7 @@ public static class NJsonSchemaExtensions
         }
     }
 
-    private static JsonSchemaProperty ConvertValue(object value)
+    private static JsonSchemaProperty ConvertValue(object value, NJsonSchemaSettings settings)
     {
         switch (value)
         {
@@ -121,7 +148,7 @@ public static class NJsonSchemaExtensions
                 }
                 else
                 {
-                    listType = list.Count > 0 ? ConvertValue(list[0]!) : Object;
+                    listType = list.Count > 0 ? ConvertValue(list[0]!, settings) : Object;
                 }
 
                 return new JsonSchemaProperty
@@ -156,7 +183,7 @@ public static class NJsonSchemaExtensions
                 return Long;
 
             case string stringValue:
-                return StringMapper.Map(stringValue);
+                return settings.ResolveFormatForString ? StringMapper.Map(stringValue) : String;
 
             case System.TimeSpan:
                 return TimeSpan;
@@ -165,11 +192,11 @@ public static class NJsonSchemaExtensions
                 return Uri;
 
             case not null: // object
-                var jsonSchemaPropertyForObject = new JsonSchemaProperty { Type = JsonObjectType.Object };
+                var jsonSchemaPropertyForObject = Object;
                 foreach (var propertyInfo in value.GetType().GetProperties())
                 {
                     var propertyValue = propertyInfo.GetValue(value, null);
-                    var jsonSchemaProperty = value != null ? ConvertValue(propertyValue) : ConvertType(propertyInfo.PropertyType);
+                    var jsonSchemaProperty = value != null ? ConvertValue(propertyValue, settings) : ConvertType(propertyInfo.PropertyType);
                     jsonSchemaPropertyForObject.Properties.Add(propertyInfo.Name, jsonSchemaProperty);
                 }
 

@@ -46,7 +46,7 @@ public class NJsonSchemaExtensionsTests
         var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 
         // Assert
-        schema.Should().Be(File.ReadAllText(Path.Combine("../../../", "JObject.json")));
+        schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "JObject.json")));
     }
 
     [Fact]
@@ -59,20 +59,20 @@ public class NJsonSchemaExtensionsTests
         var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 
         // Assert
-        schema.Should().Be(File.ReadAllText(Path.Combine("../../../", "JArray.json")));
+        schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "JArray.json")));
     }
 
     [Fact]
     public void ArrayToJsonSchema()
     {
         // Arrange
-        var instance = new[] { "a1" };
+        var instance = new[] { "https://test" };
 
         // Act
         var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 
         // Assert
-        schema.Should().Be(File.ReadAllText(Path.Combine("../../../", "array.json")));
+        schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "array.json")));
     }
 
     [Fact]
@@ -109,6 +109,6 @@ public class NJsonSchemaExtensionsTests
         var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 
         // Assert
-        schema.Should().Be(File.ReadAllText(Path.Combine("../../../", "object.json")));
+        schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "object.json")));
     }
 }
