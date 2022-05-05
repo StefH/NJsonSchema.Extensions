@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Newtonsoft.Json.Linq;
+using NJsonSchema.Validation.FormatValidators;
 #if NETSTANDARD1_3
 #endif
 
@@ -15,14 +16,31 @@ public static class NJsonSchemaExtensions
     private static readonly JsonSchemaProperty Date = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.DateTime };
     private static readonly JsonSchemaProperty Float = new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Float };
     private static readonly JsonSchemaProperty Double = new() { Type = JsonObjectType.Number, Format = JsonFormatStrings.Double };
+    private static readonly JsonSchemaProperty Email = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Email };
     private static readonly JsonSchemaProperty Guid = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Guid };
     private static readonly JsonSchemaProperty Integer = new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Integer };
+    private static readonly JsonSchemaProperty IpV4 = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV4 };
+    private static readonly JsonSchemaProperty IpV6 = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.IpV6 };
     private static readonly JsonSchemaProperty Long = new() { Type = JsonObjectType.Integer, Format = JsonFormatStrings.Long };
     private static readonly JsonSchemaProperty Null = new() { Type = JsonObjectType.Null };
     private static readonly JsonSchemaProperty Object = new() { Type = JsonObjectType.Object };
     private static readonly JsonSchemaProperty String = new() { Type = JsonObjectType.String };
     private static readonly JsonSchemaProperty TimeSpan = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.TimeSpan };
     private static readonly JsonSchemaProperty Uri = new() { Type = JsonObjectType.String, Format = JsonFormatStrings.Uri };
+
+    public static readonly IFormatValidator[] FormatValidators =
+    {
+        new DateFormatValidator(),
+        new DateTimeFormatValidator(),
+        new TimeSpanFormatValidator(),
+        new TimeFormatValidator(),
+        new GuidFormatValidator(),
+        new UuidFormatValidator(),
+        new EmailFormatValidator(),
+        new IpV4FormatValidator(),
+        new IpV6FormatValidator(),
+        new UriFormatValidator()
+    };
 
     public static JsonSchema ToJsonSchema(this JObject instance)
     {
@@ -84,7 +102,7 @@ public static class NJsonSchemaExtensions
                 return jsonSchemaPropertyForObject;
 
             case JTokenType.String:
-                return String;
+                return ParseString(value.Value<string>());
 
             case JTokenType.TimeSpan:
                 return TimeSpan;
@@ -152,8 +170,8 @@ public static class NJsonSchemaExtensions
             case long:
                 return Long;
 
-            case string:
-                return String;
+            case string stringValue:
+                return ParseString(stringValue);
 
             case System.TimeSpan:
                 return TimeSpan;
@@ -175,6 +193,19 @@ public static class NJsonSchemaExtensions
             case null:
                 return Null;
         }
+    }
+
+    private static JsonSchemaProperty ParseString(string? value)
+    {
+        foreach (var validator in FormatValidators)
+        {
+            if (validator.IsValid(value, JTokenType.String))
+            {
+                return new JsonSchemaProperty { Type = JsonObjectType.String, Format = validator.Format };
+            }
+        }
+
+        return String;
     }
 
     private static JsonSchemaProperty ConvertType(Type type)
