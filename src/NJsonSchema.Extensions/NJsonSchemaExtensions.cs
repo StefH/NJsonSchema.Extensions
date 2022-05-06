@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 #if NETSTANDARD1_3
 #endif
@@ -36,7 +35,6 @@ public static class NJsonSchemaExtensions
     /// <param name="instance">The <see cref="JObject"/> instance.</param>
     /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
     /// <returns>The converted <see cref="JsonSchema"/>.</returns>
-    [PublicAPI]
     public static JsonSchema ToJsonSchema(this JObject instance, NJsonSchemaSettings? settings = null)
     {
         settings ??= new NJsonSchemaSettings();
@@ -49,7 +47,6 @@ public static class NJsonSchemaExtensions
     /// <param name="instance">The <see cref="JArray"/> instance.</param>
     /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
     /// <returns>The converted <see cref="JsonSchema"/>.</returns>
-    [PublicAPI]
     public static JsonSchema ToJsonSchema(this JArray instance, NJsonSchemaSettings? settings = null)
     {
         settings ??= new NJsonSchemaSettings();
@@ -62,7 +59,6 @@ public static class NJsonSchemaExtensions
     /// <param name="instance">The <see cref="object"/> instance.</param>
     /// <param name="settings">The <see cref="NJsonSchemaSettings"/> to use when converting. [Optional]</param>
     /// <returns>The converted <see cref="JsonSchema"/>.</returns>
-    [PublicAPI]
     public static JsonSchema ToJsonSchema(this object instance, NJsonSchemaSettings? settings = null)
     {
         settings ??= new NJsonSchemaSettings();

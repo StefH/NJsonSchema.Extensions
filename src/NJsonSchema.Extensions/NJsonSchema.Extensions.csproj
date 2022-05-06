@@ -2,7 +2,9 @@
 
     <PropertyGroup>
         <Version>0.0.1</Version>
+        <ProjectGuid>{06052020-DA46-4016-AA14-F3DC6ACDC20E}</ProjectGuid>
         <Authors>Stef Heyenrath</Authors>
+        <Title>NJsonSchema.Extensions</Title>
         <Description>Extension methods for NJsonSchema to convert JObject, JArray and object to a NJsonSchema</Description>
         <PackageTags>json schema validation generator .net extensions</PackageTags>
         <Copyright>Copyright © Stef Heyenrath, 2022</Copyright>
@@ -17,6 +19,8 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../PackageReleaseNotes.txt"))</PackageReleaseNotes>
         <ReleaseNotes></ReleaseNotes>
+        <SignAssembly>True</SignAssembly>
+        <AssemblyOriginatorKeyFile>NJsonSchema.Extensions.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
@@ -28,10 +32,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
         <PackageReference Include="NJsonSchema" Version="10.6.10" />
