@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.0.0.1-preview-01</Version>
+        <Version>0.0.1</Version>
         <Authors>Stef Heyenrath</Authors>
         <Description>Extension methods for NJsonSchema to convert JObject, JArray and object to a NJsonSchema</Description>
         <PackageTags>json schema validation generator .net extensions</PackageTags>
@@ -15,6 +15,8 @@
         <Nullable>enable</Nullable>
         <PackageIcon>icon.png</PackageIcon>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../PackageReleaseNotes.txt"))</PackageReleaseNotes>
+        <ReleaseNotes></ReleaseNotes>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Release'">
