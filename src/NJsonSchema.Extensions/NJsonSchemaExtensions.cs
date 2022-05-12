@@ -62,7 +62,13 @@ public static class NJsonSchemaExtensions
     public static JsonSchema ToJsonSchema(this object instance, NJsonSchemaSettings? settings = null)
     {
         settings ??= new NJsonSchemaSettings();
-        return ConvertValue(instance ?? throw new ArgumentNullException(nameof(instance)), settings);
+        return instance switch
+        {
+            JArray bodyAsJArray => bodyAsJArray.ToJsonSchema(settings),
+            JObject bodyAsJObject => bodyAsJObject.ToJsonSchema(settings),
+            null => throw new ArgumentNullException(nameof(instance)),
+            _ => ConvertValue(instance, settings)
+        };
     }
 
     private static JsonSchemaProperty ConvertJToken(JToken value, NJsonSchemaSettings settings)
