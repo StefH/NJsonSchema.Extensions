@@ -1,5 +1,5 @@
 # NJsonSchema.Extensions
-Some extension methods for NJsonSchema.
+Some extension methods for [NJsonSchema](https://github.com/RicoSuter/NJsonSchema).
 
 [![NuGet Badge](https://buildstats.info/nuget/NJsonSchema.Extensions)](https://www.nuget.org/packages/NJsonSchema.Extensions)
 
