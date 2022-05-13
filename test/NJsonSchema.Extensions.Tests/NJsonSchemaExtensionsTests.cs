@@ -50,6 +50,22 @@ public class NJsonSchemaExtensionsTests
     }
 
     [Fact]
+    public void JObjectAsObjectToJsonSchema()
+    {
+        // Arrange
+        object instance = new JObject
+        {
+            {"String", new JValue("Test")}
+        };
+
+        // Act
+        var schema = instance.ToJsonSchema().ToJson(Formatting.None);
+
+        // Assert
+        schema.Should().Be("{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"String\":{\"type\":\"string\"}}}");
+    }
+
+    [Fact]
     public void JArrayToJsonSchema()
     {
         // Arrange
@@ -60,6 +76,19 @@ public class NJsonSchemaExtensionsTests
 
         // Assert
         schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "JArray.json")));
+    }
+
+    [Fact]
+    public void JArrayAsObjectToJsonSchema()
+    {
+        // Arrange
+        object instance = new JArray("a1", "a2");
+
+        // Act
+        var schema = instance.ToJsonSchema().ToJson(Formatting.None);
+
+        // Assert
+        schema.Should().Be("{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"array\",\"items\":{\"type\":\"string\"}}");
     }
 
     [Fact]
@@ -110,5 +139,20 @@ public class NJsonSchemaExtensionsTests
 
         // Assert
         schema.Should().Be(File.ReadAllText(Path.Combine("../../../files", "object.json")));
+    }
+
+    [Fact]
+    public void ObjectNullToJsonSchema_Should_Throw()
+    {
+        // Arrange
+#pragma warning disable CS8600
+        object instance = null;
+#pragma warning restore CS8600
+
+        // Act
+        Action a = () => instance!.ToJsonSchema();
+
+        // Assert
+        a.Should().Throw<ArgumentException>();
     }
 }
