@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using FluentAssertions;
+using AwesomeAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
@@ -12,7 +12,7 @@ namespace NJsonSchema.Extensions.Tests;
 public class NJsonSchemaExtensionsTests
 {
     private readonly Guid _guid = new("9579ec16-0f66-486c-a056-2f89f2e0c2dc");
-    private readonly byte[] _bytes = { 1, 2, 3 };
+    private readonly byte[] _bytes = [1, 2, 3];
 
     [Fact]
     public void JObjectToJsonSchema()
