@@ -1,48 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <Version>0.1.0</Version>
-        <ProjectGuid>{06052020-DA46-4016-AA14-F3DC6ACDC20E}</ProjectGuid>
-        <Authors>Stef Heyenrath</Authors>
-        <Title>NJsonSchema.Extensions</Title>
-        <Description>Extension methods for NJsonSchema to convert JObject, JArray and object to a NJsonSchema</Description>
-        <PackageTags>json schema validation generator .net extensions</PackageTags>
-        <Copyright>Copyright © Stef Heyenrath, 2022</Copyright>
-        <PackageProjectUrl>https://github.com/StefH/NJsonSchema.Extensions</PackageProjectUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/StefH/NJsonSchema.Extensions</RepositoryUrl>
-        <TargetFrameworks>netstandard1.3;netstandard2.0;net40;net45</TargetFrameworks>
-        <LangVersion>10.0</LangVersion>
-        <Nullable>enable</Nullable>
-        <PackageIcon>icon.png</PackageIcon>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../PackageReleaseNotes.txt"))</PackageReleaseNotes>
-        <ReleaseNotes></ReleaseNotes>
-        <SignAssembly>True</SignAssembly>
-        <AssemblyOriginatorKeyFile>NJsonSchema.Extensions.snk</AssemblyOriginatorKeyFile>
-    </PropertyGroup>
+  <PropertyGroup>
+    <Version>0.1.0.1</Version>
+    <ProjectGuid>{06052020-DA46-4016-AA14-F3DC6ACDC20E}</ProjectGuid>
+    <Authors>Stef Heyenrath</Authors>
+    <Title>NJsonSchema.Extensions</Title>
+    <Description>Extension methods for NJsonSchema to convert JObject, JArray and object to a NJsonSchema</Description>
+    <PackageTags>json schema validation generator .net extensions</PackageTags>
+    <Copyright>Copyright © Stef Heyenrath</Copyright>
+    <PackageProjectUrl>https://github.com/StefH/NJsonSchema.Extensions</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/StefH/NJsonSchema.Extensions</RepositoryUrl>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;net40;net45</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../PackageReleaseNotes.txt"))</PackageReleaseNotes>
+    <ReleaseNotes></ReleaseNotes>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>NJsonSchema.Extensions.snk</AssemblyOriginatorKeyFile>
+    <PackageReadmeFile>PackageReadme.md</PackageReadmeFile>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <None Include="..\..\resources\icon.png" Pack="true" PackagePath="" />
-    </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\resources\icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="NJsonSchema" Version="10.6.10" />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NJsonSchema" Version="10.6.10" />
 
-    </ItemGroup>
+  </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
-        <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
-    </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.3'">
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+  </ItemGroup>
 
 </Project>

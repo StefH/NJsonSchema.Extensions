@@ -1,13 +1,11 @@
-# ![Icon](./resources/icon_32x32.png) NJsonSchema.Extensions
+﻿## ![Icon](./resources/icon_32x32.png) NJsonSchema.Extensions
 Some extension methods for [NJsonSchema](https://github.com/RicoSuter/NJsonSchema).
 
-[![NuGet Badge](https://img.shields.io/nuget/v/NJsonSchema.Extensions)](https://www.nuget.org/packages/NJsonSchema.Extensions)
+### ToJsonSchema
 
-## ToJsonSchema
+#### Convert a JObject to a NSwag JsonSchema
 
-### Convert a JObject to a NSwag JsonSchema
-
-#### JObject
+##### JObject
 ``` c#
 var instance = new JObject
 {
@@ -34,12 +32,12 @@ var instance = new JObject
 };
 ```
 
-#### Call `ToJsonSchema`
+##### Call `ToJsonSchema`
 ``` c#
 var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 ```
 
-#### Generated Swagger Schema
+##### Generated Swagger Schema
 ``` json
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
@@ -114,19 +112,19 @@ var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "
 
 ---
 
-### Convert an Jarray to a NSwag JsonSchema
+#### Convert an Jarray to a NSwag JsonSchema
 
-#### Object
+##### Object
 ``` c#
 var instance = new JArray("a1", "a2");
 ```
 
-#### Call `ToJsonSchema`
+##### Call `ToJsonSchema`
 ``` c#
 var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 ```
 
-#### Generated Swagger Schema
+##### Generated Swagger Schema
 ``` json
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
@@ -139,9 +137,9 @@ var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "
 
 ---
 
-### Convert a object to a NSwag JsonSchema
+#### Convert a object to a NSwag JsonSchema
 
-#### object
+##### object
 ``` c#
 var instance = new
 {
@@ -170,12 +168,12 @@ var instance = new
 };
 ```
 
-#### Call `ToJsonSchema`
+##### Call `ToJsonSchema`
 ``` c#
 var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "    ");
 ```
 
-#### Generated Swagger Schema
+##### Generated Swagger Schema
 ``` json
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
@@ -281,7 +279,8 @@ var schema = instance.ToJsonSchema().ToJson(Formatting.Indented).Replace("  ", "
 }
 ```
 
-## Sponsors
+
+### Sponsors
 
 [Entity Framework Extensions](https://entityframework-extensions.net/?utm_source=StefH) and [Dapper Plus](https://dapper-plus.net/?utm_source=StefH) are major sponsors and proud to contribute to the development of **NJsonSchema.Extensions**.
 
