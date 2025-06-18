@@ -1,4 +1,4 @@
-﻿## ![Icon](./resources/icon_32x32.png) NJsonSchema.Extensions
+﻿## NJsonSchema.Extensions
 Some extension methods for [NJsonSchema](https://github.com/RicoSuter/NJsonSchema).
 
 ### ToJsonSchema
