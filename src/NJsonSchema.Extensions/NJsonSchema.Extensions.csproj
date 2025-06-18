@@ -29,7 +29,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\resources\icon.png" Pack="true" PackagePath="" />
+    <None Include="../../resources/icon.png" Pack="true" PackagePath="" />
+    <None Include="../../PackageReadme.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
