@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>0.1.0.1</Version>
+    <Version>0.2.0</Version>
     <ProjectGuid>{06052020-DA46-4016-AA14-F3DC6ACDC20E}</ProjectGuid>
     <Authors>Stef Heyenrath</Authors>
     <Title>NJsonSchema.Extensions</Title>

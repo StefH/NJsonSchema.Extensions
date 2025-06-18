@@ -1,4 +1,4 @@
-# 0.1.0 (13 May 2022)
-- #1 Handle JArray and JObject in object.ToJsonSchema  [enhancement]
+# 0.2.0 (18 June 2025)
+- #2 Upgrade some packages [enhancement]
 
 The full release notes can be found here: https://github.com/StefH/NJsonSchema.Extensions/blob/main/ReleaseNotes.md
