@@ -22,7 +22,7 @@ internal static class StringMapper
     public static JsonSchemaProperty Map(string? value)
     {
         var stringSchemaProperty = new JsonSchemaProperty { Type = JsonObjectType.String };
-        if (string.IsNullOrEmpty(value))
+        if (value == null || string.IsNullOrEmpty(value))
         {
             return stringSchemaProperty;
         }

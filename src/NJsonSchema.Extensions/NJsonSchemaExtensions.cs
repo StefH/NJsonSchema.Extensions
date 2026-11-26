@@ -129,7 +129,7 @@ public static class NJsonSchemaExtensions
         }
     }
 
-    private static JsonSchemaProperty ConvertValue(object value, NJsonSchemaSettings settings)
+    private static JsonSchemaProperty ConvertValue(object? value, NJsonSchemaSettings settings)
     {
         switch (value)
         {
