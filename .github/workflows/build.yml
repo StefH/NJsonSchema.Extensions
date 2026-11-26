@@ -1,0 +1,26 @@
+name: Build
+
+on: 
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2022, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: 'Build Solution'
+      run: dotnet build "NJsonSchema.Extensions Solution.sln" -c Release
+
+    - name: 'Test'
+      run: dotnet test './test/NJsonSchema.Extensions.Tests/NJsonSchema.Extensions.Tests.csproj' -c Release
