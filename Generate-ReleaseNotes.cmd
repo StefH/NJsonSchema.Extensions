@@ -2,7 +2,7 @@ rem https://github.com/StefH/GitHubReleaseNotes
 
 rem --skip-empty-releases
 
-SET version=0.2.0
+SET version=0.3.0
 
 GitHubReleaseNotes --output ReleaseNotes.md --exclude-labels question invalid doc --version %version% --token %GH_TOKEN%
 

@@ -1,3 +1,6 @@
+# 0.3.0 (26 November 2026)
+- [#3](https://github.com/StefH/NJsonSchema.Extensions/pull/3) - Upgrade NJsonSchema to 11.6.2 [dependencies] contributed by [StefH](https://github.com/StefH)
+
 # 0.2.0 (18 June 2025)
 - [#2](https://github.com/StefH/NJsonSchema.Extensions/pull/2) - Upgrade some packages [enhancement] contributed by [StefH](https://github.com/StefH)
 

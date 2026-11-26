@@ -1,4 +1,4 @@
-# 0.2.0 (18 June 2025)
-- #2 Upgrade some packages [enhancement]
+# 0.3.0 (26 November 2026)
+- #3 Upgrade NJsonSchema to 11.6.2 [dependencies]
 
 The full release notes can be found here: https://github.com/StefH/NJsonSchema.Extensions/blob/main/ReleaseNotes.md
